@@ -6,33 +6,47 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
+import java.util.Map;
 
 /**
  * Created by Tinker on 3/26/2018.
  */
 @Service
 public class EmailSender {
-
+    private final static String srcEmailAddress = "whoszus@126.com";
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendAttachmentsMail() throws Exception {
-
+    /**
+     * 发送带附件的邮件，fileMap 传null则不发附件；
+     *
+     * @param dstEmailAddress 接受地址；
+     * @param subject         主题
+     * @param text            内容
+     * @param fileMap         文件 key:文件名 value：文件地址；
+     * @throws Exception
+     */
+    public void sendAttachmentsMailLocalFile(String dstEmailAddress, String subject, String text, Map<String, String> fileMap) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-
-        MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
-        helper.setFrom("whoszus@126.com");
-        helper.setTo("yeqinglyy_31@kindle.cn");
-        helper.setSubject("主题：有附件");
-        helper.setText("有附件的邮件");
-
-        FileSystemResource file = new FileSystemResource(new File("I:\\Book&Listening\\kindle人电子书合集\\kindleren自制\\ZZ41-42\\废都 非删节.mobi"));
-        helper.addAttachment("废都 非删节.mobi", file);
-//        helper.addAttachment("附件-2.png", file);
-
-        mailSender.send(mimeMessage);
-
+        MimeMessageHelper mimeMessageHelper = null;
+        try {
+            mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setFrom(srcEmailAddress);
+            mimeMessageHelper.setTo(dstEmailAddress);
+            mimeMessageHelper.setSubject(subject);
+            mimeMessageHelper.setText(text);
+            if (fileMap != null) {
+                for (Map.Entry<String, String> fileEntry : fileMap.entrySet()) {
+                    FileSystemResource file = new FileSystemResource(new File(fileEntry.getValue()));
+                    mimeMessageHelper.addAttachment(fileEntry.getKey(), file);
+                }
+            }
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 }
