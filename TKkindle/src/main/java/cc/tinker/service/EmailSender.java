@@ -1,5 +1,6 @@
 package cc.tinker.service;
 
+import cc.tinker.tools.restrofitTools.DownTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -19,6 +20,8 @@ public class EmailSender {
     private final static String srcEmailAddress = "whoszus@126.com";
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private DownTools downTools;
 
     /**
      * 发送带附件的邮件，fileMap 传null则不发附件；
@@ -44,6 +47,24 @@ public class EmailSender {
                     mimeMessageHelper.addAttachment(fileEntry.getKey(), file);
                 }
             }
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendMailByFileUrl(String dstEmailAddress, String subject, String text, String httpFileUrl) {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = null;
+        try {
+            mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+            mimeMessageHelper.setFrom(srcEmailAddress);
+            mimeMessageHelper.setTo(dstEmailAddress);
+            mimeMessageHelper.setSubject(subject);
+            mimeMessageHelper.setText(text);
+
+            downTools.downLoadFileByUrl(httpFileUrl,dstEmailAddress);
+
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             e.printStackTrace();
