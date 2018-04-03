@@ -1,5 +1,6 @@
 package cc.tinker.controller;
 
+import cc.tinker.entity.KindlePushRequest;
 import cc.tinker.service.EmailSender;
 import cc.tinker.tools.restrofitTools.JsonResponse;
 import com.google.common.base.Strings;
@@ -54,4 +55,17 @@ public class KindleController {
         emailSender.sendMailByFileUrl(email, subject, text, httpUrl);
         return JsonResponse.newOk();
     }
+
+    @RequestMapping("/push/http/post")
+    public JsonResponse pushToKindleByUrl(KindlePushRequest kindlePushRequest) {
+        if (Strings.isNullOrEmpty(kindlePushRequest.getFileUrl())) {
+            return JsonResponse.newError("filePath is null or empty");
+        }
+        if (Strings.isNullOrEmpty(kindlePushRequest.getEmailAddress())) {
+            return JsonResponse.newError("email is empty");
+        }
+        emailSender.sendMailByFileUrl(kindlePushRequest.getEmailAddress(), subject, text, kindlePushRequest.getFileUrl());
+        return JsonResponse.newOk();
+    }
+
 }

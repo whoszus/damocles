@@ -32,6 +32,7 @@ public class RetrofitFactory {
                 value = retrofit(url).create(interfaces);
                 products.put(key, value);
             }
+            logger.info(url);
             return (T) value;
         }
     }
