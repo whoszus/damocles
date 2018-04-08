@@ -24,10 +24,10 @@
 
     <dependencies>
         <dependency>
-            <groupId>cc.tinker</groupId>
-            <artifactId>tinker.base</artifactId>
+            <groupId>cc.tinker.base</groupId>
+            <artifactId>tk.base</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
 
     </dependencies>
 
