@@ -1,4 +1,4 @@
-package kk.tinker;
+package cc.tinker;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
