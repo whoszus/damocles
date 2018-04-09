@@ -1,7 +1,7 @@
 package cc.tinker.web.services;
 
-import cc.tinker.entry.annotation.Permission;
-import cc.tinker.entry.annotation.RsaKeyRequire;
+import cc.tinker.annotation.Permission;
+import cc.tinker.annotation.RsaKeyRequire;
 import cc.tinker.entry.encrypt.AES;
 import cc.tinker.entry.encrypt.RSA;
 import cc.tinker.entry.repository.SearchFilter;

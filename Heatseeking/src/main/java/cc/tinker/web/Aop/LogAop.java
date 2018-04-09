@@ -1,6 +1,6 @@
 package cc.tinker.web.Aop;
 
-import cc.tinker.entry.annotation.Permission;
+import cc.tinker.annotation.Permission;
 import cc.tinker.web.controller.AuthController;
 import cc.tinker.web.entity.AccessHistoryEntity;
 import cc.tinker.web.entity.TokenEntity;

@@ -1,4 +1,4 @@
-package cc.tinker.entry.annotation;
+package cc.tinker.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
