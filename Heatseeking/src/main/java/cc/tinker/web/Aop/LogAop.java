@@ -114,7 +114,7 @@ public class LogAop {
                 accessHistoryEntity.setIsRefuse(0);
                 accessHistoryEntity.setSysMethodName(methodName);
 
-                /**
+                /*
                  * 日志记录黑名单ip访问；
                  */
                 if (!ipAccessService.ipaccessrecord(request.getRemoteAddr())) {
@@ -123,7 +123,7 @@ public class LogAop {
                 }
                 ipAccessService.saveAccessHistory(accessHistoryEntity);
 
-                /**
+                /*
                  * 访问方法是否需要登录；
                  */
                 if (isLoginRequired(method)) {
