@@ -1,6 +1,6 @@
 package cc.tinker.service;
 
-import cc.tinker.tools.restrofitTools.DownTools;
+import cc.tinker.restrofitTools.DownTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,7 +13,9 @@ import java.io.File;
 import java.util.Map;
 
 /**
- * Created by Tinker on 3/26/2018.
+ *
+ * @author Tinker
+ * @date 3/26/2018
  */
 @Service
 public class EmailSender {
@@ -62,9 +64,7 @@ public class EmailSender {
             mimeMessageHelper.setTo(dstEmailAddress);
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(text);
-
             downTools.downLoadFileByUrl(httpFileUrl,dstEmailAddress);
-
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             e.printStackTrace();

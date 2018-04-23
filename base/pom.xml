@@ -103,7 +103,7 @@
             <version>24.1-jre</version>
         </dependency>
 
-        
+
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
