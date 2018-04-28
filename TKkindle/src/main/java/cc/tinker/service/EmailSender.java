@@ -13,7 +13,6 @@ import java.io.File;
 import java.util.Map;
 
 /**
- *
  * @author Tinker
  * @date 3/26/2018
  */
@@ -36,7 +35,7 @@ public class EmailSender {
      */
     public void sendAttachmentsMailLocalFile(String dstEmailAddress, String subject, String text, Map<String, String> fileMap) {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
-        MimeMessageHelper mimeMessageHelper = null;
+        MimeMessageHelper mimeMessageHelper;
         try {
             mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
             mimeMessageHelper.setFrom(srcEmailAddress);
@@ -64,7 +63,7 @@ public class EmailSender {
             mimeMessageHelper.setTo(dstEmailAddress);
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(text);
-            downTools.downLoadFileByUrl(httpFileUrl,dstEmailAddress);
+            downTools.downLoadFileByUrl(httpFileUrl, dstEmailAddress);
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
             e.printStackTrace();
