@@ -16,7 +16,7 @@
         <module>wechat</module>
         <module>TKkindle</module>
         <module>base</module>
-        <module>HeatSeeking</module>
+        <module>heatseeking</module>
     </modules>
 
     <parent>
