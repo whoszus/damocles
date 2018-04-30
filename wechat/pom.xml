@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>kk.tinker</groupId>
-    <artifactId>wechat</artifactId>
+    <artifactId>tk.wechat</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
@@ -27,7 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>cc.tinker.base</groupId>
-            <artifactId>tk.base</artifactId>
+            <artifactId>tk-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
